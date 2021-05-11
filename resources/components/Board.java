@@ -39,10 +39,17 @@ public class Board implements IBoard, Serializable {
 
     @Override
     public void printBoard() {
-        for (Cell[] row : this.board) {
-            for (Cell col : row) {
-                System.out.print(col.getType().getType() + " ");
+        for (int row = 0; row < this.board.length; row++) {
+            for (int col = 0; col < this.board.length; col++) {
+                System.out.print(this.board[row][col].getType().getType());
+                if (col + 1 < this.board.length) {
+                    System.out.print(
+                            (this.board[row][col + 1].getType() != CellType.EMPTY &&
+                                    this.board[row][col].getType() != CellType.EMPTY) ? " --- " : "     ");
+                }
             }
+            System.out.println();
+            System.out.println();
             System.out.println();
         }
     }
